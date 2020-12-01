@@ -1,4 +1,5 @@
-###Running
-It uses Bundler
-'''bundler install
-rake'''
+Install using Bundler
+```
+bundler install
+rake
+```
