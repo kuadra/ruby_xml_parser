@@ -1,5 +1,4 @@
 Install using Bundler
-###Running
 ```
 bundler install
 ```
