@@ -7,5 +7,14 @@ class Foo
 end
 
 @doc = Nokogiri::XML(File.read("./src/hr_test_1.xml"))
-print @doc.xpath("//FirstName")
+@first_names = @doc.xpath("//FirstName")
+@last_names = @doc.xpath("//LastName")
+
+puts "first_names: "
+puts @first_names
+puts "last names: "
+puts @last_names
+
+@test = @doc.xpath("//data")
+puts @test.xpath("//invio")
 
