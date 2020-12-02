@@ -1,5 +1,13 @@
 Install using Bundler
+###Running
 ```
 bundler install
-rake
+```
+run without tests
+```
+bundle exec rake run
+```
+run with tests
+```
+bundle exec rake
 ```
