@@ -3,17 +3,20 @@ require 'rubygems'
 require 'json'
 
 class XmlHashConverter
+  def convert_from_xml(xml)
+    Hash.from_xml(xml)
+  end
 
-  def convert(path)
+  def convert_from_file(path)
     if(path.empty?)
       raise RuntimeError.new("Input path is empty")
     end
     begin
       File.read(path)
+      Hash.from_xml(File.read(path))
     rescue => e
-      raise RuntimeError.new("Failed to read file, input path is: " + path)
+      raise IOError.new("Failed to read file, input path is: " + path)
     end
-    Hash.from_xml(File.read(path))
   end
 
   def write_file(hash)

@@ -6,17 +6,18 @@ class ParserTest < Test::Unit::TestCase
     @converter = XmlHashConverter.new()
   end
 
-  def test_add
-    doc = @converter.convert("./hr_test_1.xml")
-    assert_equal("9932", doc[:InvioPostale][:unique_id], "Conversion fails")
+  def test_conversion
+    xml = "<invio id=\"1\"><FirstName>Mario</FirstName><LastName>Rossi</LastName><ContactNo>434334344334</ContactNo><AttachmentName>cartolina_vacanze.pdf</AttachmentName><Address><City>ROMA RM</City><Street>Via Viale</Street><Zip>00165</Zip><Country>Italy</Country></Address></invio>"
+    doc = @converter.convert_from_xml(xml)
+    assert_equal("1", doc[:invio][:id], "Conversion fails")
   end
 
-  def test_empty
-    assert_raise(RuntimeError.new("Input path is empty")) {@converter.convert("")}
+  def test_empty_path
+    assert_raise(RuntimeError.new("Input path is empty")) {@converter.convert_from_file("")}
   end
 
   def test_path
-    assert_raise(RuntimeError) {@converter.convert("#@!è")}
+    assert_raise(IOError) {@converter.convert_from_file("#@!è")}
   end
 
   def teardown
